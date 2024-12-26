@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RegisterScreen extends StatelessWidget {
-  const RegisterScreen({super.key});
-
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,6 +49,12 @@ class RegisterScreen extends StatelessWidget {
                 ),
               ),
               TextFormField(
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Lütfen Adınızı ve Soyadınızı Girin";
+                  }
+                  return null;
+                },
                 decoration: InputDecoration(
                   fillColor: Colors.white,
                   filled: true,
@@ -86,6 +91,14 @@ class RegisterScreen extends StatelessWidget {
                 ),
               ),
               TextFormField(
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Lütfen Email Adresinizi Girin";
+                  } else if (!value.contains("@")) {
+                    return "Lütfen Geçerli Bir Email Adresi Girin";
+                  }
+                  return null;
+                },
                 decoration: InputDecoration(
                   fillColor: Colors.white,
                   filled: true,
@@ -122,6 +135,14 @@ class RegisterScreen extends StatelessWidget {
                 ),
               ),
               TextFormField(
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Lütfen Parolanızı Girin";
+                  } else if (value.length < 6) {
+                    return "Parola En Az 6 Karakter Olmalıdır";
+                  }
+                  return null;
+                },
                 decoration: InputDecoration(
                   fillColor: Colors.white,
                   filled: true,

@@ -230,7 +230,7 @@ class LoginScreen extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const RegisterScreen()));
+                              builder: (context) =>  RegisterScreen()));
                     },
                     child: Text("Kayıt Ol",
                         style: GoogleFonts.lato(
