@@ -1,4 +1,4 @@
-import 'package:eticaret_fullstack/views/screens/aurh_screens/login..dart';
+import 'package:eticaret_fullstack/views/screens/aurh_screens/login.dart';
 import 'package:flutter/material.dart';
 
 void main() {
