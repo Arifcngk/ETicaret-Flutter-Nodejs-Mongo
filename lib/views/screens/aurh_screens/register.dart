@@ -1,9 +1,14 @@
+import 'package:eticaret_fullstack/controllers/auth_controller.dart';
 import 'package:eticaret_fullstack/views/screens/aurh_screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RegisterScreen extends StatelessWidget {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final AuthController _authController = AuthController();
+  late String email;
+  late String fullName;
+  late String password;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +22,7 @@ class RegisterScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(height: 50),
+                  const SizedBox(height: 50),
                   Text(
                     'Hesap Olusturun',
                     style: GoogleFonts.lato(
@@ -53,6 +58,9 @@ class RegisterScreen extends StatelessWidget {
                     ),
                   ),
                   TextFormField(
+                    onChanged: (value) {
+                      fullName = value;
+                    },
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Lütfen Adınızı ve Soyadınızı Girin";
@@ -95,6 +103,9 @@ class RegisterScreen extends StatelessWidget {
                     ),
                   ),
                   TextFormField(
+                    onChanged: (value) {
+                      email = value;
+                    },
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Lütfen Email Adresinizi Girin";
@@ -139,6 +150,9 @@ class RegisterScreen extends StatelessWidget {
                     ),
                   ),
                   TextFormField(
+                    onChanged: (value) {
+                      password = value;
+                    },
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Lütfen Parolanızı Girin";
@@ -175,10 +189,15 @@ class RegisterScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   InkWell(
-                    onTap: () {
+                    onTap: () async {
                       if (formKey.currentState!.validate()) {
                         // ignore: avoid_print
                         print("Başarılı");
+                        await _authController.signUpUsers(
+                            context: context,
+                            fullName: fullName,
+                            email: email,
+                            password: password);
                       } else {
                         // ignore: avoid_print
                         print("Başarısız");
