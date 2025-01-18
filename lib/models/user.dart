@@ -8,6 +8,7 @@ class UserModel {
   final String state;
   final String locality;
   final String city;
+  final String token;
 
   UserModel(
       {required this.id,
@@ -16,7 +17,8 @@ class UserModel {
       required this.password,
       required this.state,
       required this.locality,
-      required this.city});
+      required this.city,
+      required this.token});
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -26,7 +28,8 @@ class UserModel {
       'password': password,
       'state': state,
       'locality': locality,
-      'city': city
+      'city': city,
+      'token': token,
     };
   }
 
@@ -41,6 +44,7 @@ class UserModel {
       state: map['state'] as String? ?? '',
       locality: map['locality'] as String? ?? '',
       city: map['city'] as String? ?? '',
+      token: map['token'] as String? ?? '',
     );
   }
 

@@ -3,12 +3,44 @@ import 'package:eticaret_fullstack/views/screens/aurh_screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   final AuthController _authController = AuthController();
+
   late String email;
+
   late String fullName;
+
   late String password;
+
+  bool isLoading = false;
+
+  userRegister() async {
+    setState(() {
+      isLoading = true;
+    });
+    await _authController
+        .signUpUsers(
+            context: context,
+            fullName: fullName,
+            email: email,
+            password: password)
+        .whenComplete(
+      () {
+        formKey.currentState!.reset();
+        setState(() {
+          isLoading = false;
+        });
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -189,15 +221,11 @@ class RegisterScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   InkWell(
-                    onTap: () async {
+                    onTap: () {
                       if (formKey.currentState!.validate()) {
                         // ignore: avoid_print
                         print("Başarılı");
-                        await _authController.signUpUsers(
-                            context: context,
-                            fullName: fullName,
-                            email: email,
-                            password: password);
+                        userRegister();
                       } else {
                         // ignore: avoid_print
                         print("Başarısız");
