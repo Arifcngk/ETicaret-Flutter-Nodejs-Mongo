@@ -1,3 +1,4 @@
+import 'package:eticaret_fullstack/views/screens/nav_screens/widgets/header_widget.dart';
 import 'package:flutter/material.dart';
 
 class MainScreenView extends StatefulWidget {
@@ -11,8 +12,12 @@ class _MainScreenViewState extends State<MainScreenView> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(
-        child: Text("Main Ekranı"),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            HeaderWidget(),
+          ],
+        ),
       ),
     );
   }

@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:eticaret_fullstack/global_varibles.dart';
 import 'package:eticaret_fullstack/models/user.dart';
 import 'package:eticaret_fullstack/services/manage_http_response.dart';
