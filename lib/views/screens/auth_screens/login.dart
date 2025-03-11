@@ -1,5 +1,5 @@
 import 'package:eticaret_fullstack/controllers/auth_controller.dart';
-import 'package:eticaret_fullstack/views/screens/aurh_screens/register.dart';
+import 'package:eticaret_fullstack/views/screens/auth_screens/register.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

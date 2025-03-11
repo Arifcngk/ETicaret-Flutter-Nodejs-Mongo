@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:eticaret_fullstack/global_varibles.dart';
 import 'package:eticaret_fullstack/models/user.dart';
 import 'package:eticaret_fullstack/services/manage_http_response.dart';
-import 'package:eticaret_fullstack/views/screens/aurh_screens/login.dart';
+import 'package:eticaret_fullstack/views/screens/auth_screens/login.dart';
 import 'package:eticaret_fullstack/views/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -26,11 +26,14 @@ class AuthController {
         city: '',
         token: '',
       );
-      http.Response response = await http.post(Uri.parse('$uri/api/signin'),
-          body: _userModel.toJson(),
-          headers: <String, String>{
+      http.Response response =
+          await http.post(Uri.parse('$uri/api/signup'), // Doğru endpoint
+              body: _userModel.toJson(),
+              headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
           });
+      print(
+          'Signup Response: ${response.statusCode} - ${response.body}'); // Hata ayıklama
 
       manageHttpResponse(
         response: response,
@@ -41,12 +44,12 @@ class AuthController {
               MaterialPageRoute(
                 builder: (context) => LoginScreen(),
               ));
-          showSnackBar(context, "Bağlantı Controller Başarılı Şekilde Çalıştı");
+          showSnackBar(context, "Kayıt başarılı! Giriş yapabilirsiniz.");
         },
       );
     } catch (e) {
-      // ignore: avoid_print
-      print("Model Hatası");
+      print("Hata: $e");
+      showSnackBar(context, "Kayıt sırasında bir hata oluştu.");
     }
   }
 
@@ -77,7 +80,7 @@ class AuthController {
               ),
               (route) => false);
 
-          // mesaj text içeriği 
+          // mesaj text içeriği
           showSnackBar(context, "Bağlantı  Başarılı Şekilde Çalıştı");
         },
       );
