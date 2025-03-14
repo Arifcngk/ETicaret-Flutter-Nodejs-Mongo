@@ -38,18 +38,16 @@ class AuthController {
       manageHttpResponse(
         response: response,
         context: context,
-        onSucces: () {
+        onSuccess: () {
           Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => LoginScreen(),
               ));
-          showSnackBar(context, "Kayıt başarılı! Giriş yapabilirsiniz.");
         },
       );
     } catch (e) {
       print("Hata: $e");
-      showSnackBar(context, "Kayıt sırasında bir hata oluştu.");
     }
   }
 
@@ -72,7 +70,7 @@ class AuthController {
       manageHttpResponse(
         response: response,
         context: context,
-        onSucces: () {
+        onSuccess: () {
           Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
@@ -81,7 +79,6 @@ class AuthController {
               (route) => false);
 
           // mesaj text içeriği
-          showSnackBar(context, "Bağlantı  Başarılı Şekilde Çalıştı");
         },
       );
     } catch (e) {

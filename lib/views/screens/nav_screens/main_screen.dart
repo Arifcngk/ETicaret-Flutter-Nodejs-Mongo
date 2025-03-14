@@ -1,3 +1,5 @@
+import 'package:eticaret_fullstack/views/screens/nav_screens/widgets/banner_widget.dart';
+import 'package:eticaret_fullstack/views/screens/nav_screens/widgets/category_widget.dart';
 import 'package:eticaret_fullstack/views/screens/nav_screens/widgets/header_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +18,8 @@ class _MainScreenViewState extends State<MainScreenView> {
         child: Column(
           children: [
             HeaderWidget(),
+            BannerWidget(),
+            CategoryWidget(),
           ],
         ),
       ),
